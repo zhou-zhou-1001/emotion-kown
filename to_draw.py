@@ -1,5 +1,5 @@
-import matplotlib.pyplot as plt
-plt.style.use('seaborn-v0_8')
+import plotly.express as px
+import pandas as pd
 
 class AllPressure:
     def __init__(self):
@@ -8,9 +8,12 @@ class AllPressure:
         self.all_number = []
         self.date = None
         self.number = None
+        self.all_the_emotion_p = []
+        self.all_the_emotion_num_n = []
         self.all_the_emotion = []
         self.all_the_emotion_num = []
-
+        self.df = pd.DataFrame(columns=('date', 'number'))
+        self.the_draws = {}
 
     def add_all_pressure(self):
         print("the pressure number cannot > 100 ")
@@ -35,33 +38,21 @@ class AllPressure:
                 continue
 
             # 存入字典
-            self.all_pressure[self.date]= self.number
-
-    def turn_all_pressure(self):
-        for num in self.all_pressure.values():
-            self.all_number.append(num)
-        for num in self.all_pressure.keys():
-            self.all_date.append(num)
+            self.all_the_emotion_p.append(self.date)
+            self.all_the_emotion_num_n.append(number)
 
     def draw_run(self):
-
         self.add_all_pressure()
-        self.turn_all_pressure()
-        fig, ax = plt.subplots()
-        x_num = range(1,len(self.all_date)+1 )
-        ax.plot(x_num, self.all_number)
-        plt.show()
+        df = pd.DataFrame({'date':self.all_the_emotion_p,'number': self.all_the_emotion_num_n})
+        fig = px.line(df, x='date', y='number')
+        fig.show()
+
 
     def draw_emotion(self ):
-        self.all_the_emotion = []
-        self.all_the_emotion_num = []
-        sorted_items = sorted(self.all_emotion.items())
-        self.all_the_emotion = [item[0] for item in sorted_items]
-        self.all_the_emotion_num = [item[1] for item in sorted_items]
-
+        self.the_draws = list(zip(self.all_the_emotion, self.all_the_emotion_num))
         # 绘制饼图
-        plt.pie(self.all_the_emotion_num, labels=self.all_the_emotion, autopct='%1.1f%%')
-        plt.title('You Emotion ')
-        plt.axis('equal')
-        plt.show()
+        fig = px.pie(values =self.all_the_emotion_num, names=self.all_the_emotion)
+        fig.show()
+
+
 

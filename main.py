@@ -48,7 +48,11 @@ class Emotion (AllPressure):
                 a = a - emotion_num
 
                 # 存入字典
+
                 self.all_emotion[self.emotion_x] = self.emotion_y
+                self.all_the_emotion.append(self.emotion_x)
+                self.all_the_emotion_num.append(emotion_num)
+
                 if a == 0:
 
                     print(f'''you emotion : {self.all_emotion}''')
