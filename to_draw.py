@@ -1,6 +1,7 @@
 import plotly.express as px
 import pandas as pd
 
+
 class AllPressure:
     def __init__(self):
         self.all_pressure = {}
@@ -16,14 +17,14 @@ class AllPressure:
         self.the_draws = {}
 
     def add_all_pressure(self):
-        print("the pressure number cannot > 100 ")
+        print("压力数值不能 > 100")
         while True:
             # 输入压力数值
-            self.date = input('''please write the time,and if you are ok , \n use 'fine' to stand: ''')
+            self.date = input('''请写下时间，如果你好了，请用“fine”表示：''')
             print(self.date)
             if self.date == 'fine':
                 break
-            self.number  = input('''please write this emotion's number ,and your emotion number needs to be a int : ''')
+            self.number  = input(''' 请写下这个情绪的数字，你的情绪数字需要是一个整数：''')
             print(self.number)
             # 检查类型
             try:
@@ -31,15 +32,17 @@ class AllPressure:
                 number = self.number
 
             except ValueError:
-                print("please write a right number")
+                print("请输入正确的数值")
                 continue
             if number <= 0 or  number > 100:
-                print("please write a right number")
+                print("请输入正确的数值")
                 continue
 
             # 存入字典
             self.all_the_emotion_p.append(self.date)
             self.all_the_emotion_num_n.append(number)
+
+
 
     def draw_run(self):
         self.add_all_pressure()

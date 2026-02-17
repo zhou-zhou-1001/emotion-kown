@@ -1,5 +1,5 @@
 from to_draw import AllPressure
-
+from suggestion import suggestion
 class Emotion (AllPressure):
 
 
@@ -21,27 +21,27 @@ class Emotion (AllPressure):
 
             # 设定总值为100
             a = 100
-            print("the all emotion number add need to be 100")
+            print("所有的情绪数值总和需为100")
             while True:
                 # 输入主观情绪及数值
-                self.emotion_x = input('''please write a emotion : ''')
+                self.emotion_x = input('''请写下一个情绪''')
                 print(self.emotion_x)
                 self.emotion_y = input(
-                    '''please write this emotion's number ,and your emotion number needs to be a int : ''')
+                    '''请写下这个情绪的数值为几，并且这个数值需要为一个整数''')
                 print(self.emotion_y)
 
                 # 检查数量是否正确
                 try:
                     emotion_num = int(self.emotion_y)
                 except ValueError:
-                    print("please write a right number")
+                    print("请写上正确的数值")
                     continue
                 if emotion_num <= 0 or emotion_num > 100:
-                    print("please write a right number")
+                    print("请写上正确的数值")
                     continue
 
                 if emotion_num > a:
-                    print("please write a right number")
+                    print("请写上正确的数值")
                     continue
 
                 # 计算总值
@@ -55,13 +55,13 @@ class Emotion (AllPressure):
 
                 if a == 0:
 
-                    print(f'''you emotion : {self.all_emotion}''')
+                    print(f'''你的情绪由 : {self.all_emotion} 组成''')
                     self.draw_emotion()
                     break
 
 
                 else:
-                    print(f"now you have {a}")
+                    print(f"现在你还有 {a} 的情绪数值剩余量")
 
 
     def input_objective(self):
@@ -69,42 +69,45 @@ class Emotion (AllPressure):
             try:
                 #输入主观客观压力数值及感受指数
                 emotion_number_input_self = input(
-                    "Enter your pressure  emotion number,and your  emotion number needs to be a int : ")
+                    " 输入你的压力情绪数值，且你的情绪数值需要为整数。")
                 self.emotion_number_self = int(emotion_number_input_self)
 
-                degree_num_input = input("Enter your degree number,and your degree number needs to be a float : ")
+                degree_num_input = input("输入你的感受程度，且这个数值在0到2之间，需要是一个小数：")
                 self.degree_num = float(degree_num_input)
 
                 emotion_number_input = input(
-                    "Enter your pressure objective emotion number,and your objective emotion number needs to be a int : ")
+                    " 输入你的压力客观情绪数值，且你的客观情绪数值必须为整数：")
                 self.emotion_number = int(emotion_number_input)
 
                 #检查数值
                 if 0 <= self.emotion_number <= 100 and 0 <= self.emotion_number_self <= 100 and 0 <= self.emotion_number <= 100:
-                    print("this is a right number")
+                    print("这是正确的格式数字")
                 else :
-                    print("please write a right number")
+                    print("请写上正确的数值")
 
-                if 0 <= self.degree_num <= 1:
-                    print("this is a right number")
+                if 0 <= self.degree_num <= 2:
+                    print("这是正确的格式数字")
                 else:
-                    print("please write a right number")
+                    print("请写上正确的数值")
 
                 #计算结果
                 self.objective_final_pressure = self.emotion_number * self.degree_num
                 final = (self.emotion_number_self + self.objective_final_pressure) / 2
-                print(f"your final pressure emotion is {final}")
+                print(f"你最终的压力数值为 {final}")
+                suggestion(final)
+
                 break
             except ValueError:
-                print("please write a right number")
+                print("请写上正确的数值")
 
     #执行程序
     def start(self):
         while True:
-            ask = input("if  you want to draw the all date pressure ,add '1',\n"
-                        "if you want to see all you emotion,add '2',\n"
-                        " if you want to see your finish pressure number ,add '3'\n"
-                        "if you want to out,add 'out'\n")
+            ask = input("如果你想绘制所有日期的压力值，输入'1'，\n"
+            "如果你想查看所有情绪记录，输入'2'，\n"
+            "如果你想查看最终压力数值，输入'3'，\n"
+            "如果你想退出，输入' out'\n"
+            '-------------------------------------------------------------------------------\n')
             print(ask)
             if ask == '1':
                 self.draw_run()
@@ -117,11 +120,11 @@ class Emotion (AllPressure):
                 continue
 
             elif ask == 'out':
-                print("ok")
+                print("已完成")
                 break
 
             else:
-                print("please write a right number")
+                print("请输入正确的数字")
                 continue
 
 
