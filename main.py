@@ -122,6 +122,8 @@ class Emotion (AllPressure):
         print(f"事件已保存")
 
     def see_all_thing(self):
+        conn = sqlite3.connect('emotion.db')
+        c = conn.cursor()
         print("正在查询您的学习笔记...")
         c.execute("SELECT * FROM emotion")
         all_notes = c.fetchall()

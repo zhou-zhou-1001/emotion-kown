@@ -1,0 +1,17 @@
+# 忽略所有 .db 数据库文件
+*.db
+
+# 忽略Python的缓存文件和虚拟环境
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+env/
+venv/
+.env
+
+# 忽略IDE的配置文件
+.vscode/
+.idea/
+*.swp
+*.swo
