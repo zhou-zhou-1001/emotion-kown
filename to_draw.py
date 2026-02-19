@@ -24,7 +24,7 @@ class AllPressure:
             print(self.date)
             if self.date == 'fine':
                 break
-            self.number  = input(''' 请写下这个情绪的数字，你的情绪数字需要是一个整数：''')
+            self.number  = input('''please write this emotion's number ,and your emotion number needs to be a int : ''')
             print(self.number)
             # 检查类型
             try:
@@ -32,10 +32,10 @@ class AllPressure:
                 number = self.number
 
             except ValueError:
-                print("请输入正确的数值")
+                print("please write a right number")
                 continue
             if number <= 0 or  number > 100:
-                print("请输入正确的数值")
+                print("please write a right number")
                 continue
 
             # 存入字典

@@ -227,4 +227,3 @@ emotion = Emotion()
 emotion.start()
 conn_emo.close()
 conn_thing.close()
-

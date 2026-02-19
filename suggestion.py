@@ -7,6 +7,3 @@ def suggestion(final):
 
     elif 70 < final <= 100:
         print('你现在的压力值较高，建议停下手中的事，深呼吸，听一段纯音乐')
-
-
-
