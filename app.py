@@ -327,7 +327,7 @@ with emo_tab2 :
                         c_emo.execute("DELETE FROM all_emotion_record WHERE ID=?",(record_id,))
                         conn_emo.commit()
                         st.success("记录已删除")
-                        st.rerun
+                        st.rerun()
 
 
 
