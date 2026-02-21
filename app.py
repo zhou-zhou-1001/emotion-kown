@@ -4,18 +4,24 @@ import pandas as pd
 import sqlite3
 import datetime as dt
 
+import hashlib
 
-st.set_page_config(
-    page_title="Emotion Know",
-    layout="wide",
-)
+# 生成用户ID（基于浏览器会话）
+if 'user_id' not in st.session_state:
+    import random
+    user_id = hashlib.md5(str(random.random()).encode()).hexdigest()[:8]
+    st.session_state.user_id = user_id
 
-st.title("Emotion Know")
-st.markdown("---")
+# 显示用户ID
+st.sidebar.markdown("---")
+st.sidebar.info(f" 你的用户ID: `{st.session_state.user_id}`")
+st.sidebar.caption("保存这个ID，可以找回你的数据")
+
+# 使用用户ID创建独立的数据库
+user_id = st.session_state.user_id
 
 
-#侧边栏导航
-st.sidebar.title( "菜单栏")
+
 
 #初始化
 @st.cache_resource
@@ -23,7 +29,7 @@ def init_db():
 
      """初始化数据库连接和表结构"""
      # 连接事件数据库
-     conn_thing = sqlite3.connect('thing.db', check_same_thread=False)
+     conn_thing = sqlite3.connect(f'thing_{user_id}.db', check_same_thread=False)
      c_thing = conn_thing.cursor()
 
      # 创建事件表（如果不存在）
@@ -37,7 +43,7 @@ def init_db():
     ''')
      conn_thing.commit()
      # 连接情绪数据库
-     conn_emo = sqlite3.connect('all_emotion_record.db', check_same_thread=False)
+     conn_emo = sqlite3.connect(f'emo_{user_id}.db', check_same_thread=False)
      c_emo = conn_emo.cursor()
 
      # 创建情绪记录表（如果不存在）
